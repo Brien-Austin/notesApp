@@ -30,9 +30,9 @@ export function useDashboardRoutes(): DashboardRoute[] {
     () => [
       {
         route: "/dashboard",
-        routeName: "Dashboard",
-        icon: BarChart2,
-        isActive: pathname === "/dashboard",
+        routeName: "Home",
+        icon: Home,
+        isActive: pathname === "/home",
       },
       {
         route: "/dashboard/notes",
@@ -51,18 +51,6 @@ export function useDashboardRoutes(): DashboardRoute[] {
         routeName: "Favourites",
         icon: Star,
         isActive: pathname === "/dashboard/favourites",
-      },
-      {
-        route: "/dashboard/tags",
-        routeName: "Tags",
-        icon: Tags,
-        isActive: pathname === "/dashboard/tags",
-      },
-      {
-        route: "/dashboard/settings",
-        routeName: "Settings",
-        icon: Settings,
-        isActive: pathname === "/dashboard/settings",
       },
     ],
     [pathname]

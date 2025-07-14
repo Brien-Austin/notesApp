@@ -19,13 +19,13 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
       <div
         className="absolute inset-0 bg-black/30 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      <div className="relative z-10 bg-white rounded-xl shadow-xl p-6 w-full max-w-md">
+      <div className="relative z-10 w-full max-w-md sm:max-w-lg bg-white rounded-xl shadow-xl p-4 sm:p-6">
         {children}
       </div>
     </div>

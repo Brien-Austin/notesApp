@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { ReactQueryProvider } from "./providers/reactQuery";
 
 const satoshiFont = localFont({
   src: "/fonts/Satoshi-Variable.woff2",
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${satoshiFont.className} antialiased h-full`}>
-        {children}
+        <ReactQueryProvider> {children}</ReactQueryProvider>
       </body>
     </html>
   );

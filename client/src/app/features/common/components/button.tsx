@@ -18,7 +18,7 @@ const buttonVariants = cva(
       variant: {
         solid: "",
         outline:
-          "bg-transparent border-l-2 border-r-2  border-t-2  border-b-4 rounded-lg cursor-pointer",
+          "bg-transparent border-l-2 border-r-2 border-t-2 border-b-4 rounded-lg cursor-pointer",
       },
     },
     defaultVariants: {
@@ -61,13 +61,9 @@ export function Button({
   color,
   size,
   variant,
-  className,
+  className = "",
   ...props
 }: ButtonProps) {
-  return (
-    <button
-      className={buttonVariants({ color, size, variant, className })}
-      {...props}
-    />
-  );
+  const baseClasses = buttonVariants({ color, size, variant });
+  return <button className={`${baseClasses} ${className}`} {...props} />;
 }
