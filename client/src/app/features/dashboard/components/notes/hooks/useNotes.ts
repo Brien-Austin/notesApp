@@ -118,6 +118,7 @@ export function useCreateNote() {
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
   });
 }

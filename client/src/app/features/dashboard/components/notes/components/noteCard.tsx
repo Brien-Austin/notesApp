@@ -73,7 +73,7 @@ export default function NoteCardList({ notes, onDelete }: NoteCardListProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-6 px-2 sm:px-4 md:px-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 mb-20 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 mt-6 px-2 sm:px-4 md:px-6">
         {notes.map((note) => {
           const formattedDate = format(
             new Date(note.createdAt),

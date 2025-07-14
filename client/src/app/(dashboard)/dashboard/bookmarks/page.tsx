@@ -29,10 +29,14 @@ export default function BookMark() {
   return (
     <main className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
-        <HeroText content="Your Bookmarks" />
-        <Button onClick={() => setOpen(true)} variant="outline">
-          Add Bookmark
-        </Button>
+        <div className="hidden md:block">
+          <HeroText content="Your Bookmarks" />
+        </div>
+        <div className="hidden md:block">
+          <Button onClick={() => setOpen(true)} variant="outline">
+            Add Bookmark
+          </Button>
+        </div>
         <CreateBookmarkModal isOpen={open} onClose={() => setOpen(false)} />
       </div>
 

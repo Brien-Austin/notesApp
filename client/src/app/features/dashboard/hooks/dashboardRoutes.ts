@@ -17,7 +17,7 @@ export function useDashboardRoutes(): DashboardRoute[] {
         route: "/dashboard",
         routeName: "Home",
         icon: Home,
-        isActive: pathname === "/home",
+        isActive: pathname === "/dashboard",
       },
       {
         route: "/dashboard/notes",

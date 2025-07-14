@@ -1,7 +1,9 @@
-"use client";
-import { redirect } from "next/navigation";
+import LoginRegister from "./features/auth/components/loginRegister";
 
-const Home = () => {
-  redirect("/dashboard");
-};
-export default Home;
+export default function AuthPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <LoginRegister />
+    </div>
+  );
+}

@@ -102,6 +102,7 @@ export function useCreateBookmark() {
       }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["bookmarks"] });
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
     },
   });
 }

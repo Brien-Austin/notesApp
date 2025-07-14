@@ -1,4 +1,6 @@
-const { findOrCreateTagsByName } = require("../../common/services/tag.service");
+const {
+  findOrCreateTagsByName,
+} = require("../../common/services/common.services");
 const {
   createBookmark,
   getAllBookmarks,
@@ -8,15 +10,14 @@ const {
   findBookmarkOrThrow,
   makeFavourite,
 } = require("../services/bookmark.service");
-
 async function createBookmarkController(req, res) {
   const { url, title, tags } = req.body;
-  if (!url) {
-    return res.status(400).json({ error: "URL is required" });
-  }
+  const userId = req.user.id;
+
+  if (!url) return res.status(400).json({ error: "URL is required" });
 
   try {
-    await createBookmark(url, title, tags);
+    await createBookmark(userId, url, title, tags);
     res.status(201).json({ message: "Bookmark created successfully" });
   } catch (error) {
     res
@@ -27,7 +28,7 @@ async function createBookmarkController(req, res) {
 
 async function getAllBookmarksController(req, res) {
   try {
-    const bookmarks = await getAllBookmarks(req.query);
+    const bookmarks = await getAllBookmarks(req.query, req.user.id);
     res.status(200).json(bookmarks);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch bookmarks" });
@@ -37,8 +38,7 @@ async function getAllBookmarksController(req, res) {
 async function getBookmarkByIdController(req, res) {
   const { id } = req.params;
   try {
-    const bookmark = await findBookmarkOrThrow(id);
-
+    const bookmark = await findBookmarkOrThrow(id, req.user.id);
     res.status(200).json(bookmark);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -50,12 +50,12 @@ async function updateBookmarkController(req, res) {
   const { url, title, tags } = req.body;
 
   try {
-    await findBookmarkOrThrow(id);
+    await findBookmarkOrThrow(id, req.user.id);
 
     const tagDocs = await findOrCreateTagsByName(tags);
     const tagIds = tagDocs.map((tag) => tag._id);
 
-    const updatedBookmark = await updateBookmark(id, {
+    const updatedBookmark = await updateBookmark(id, req.user.id, {
       url,
       title,
       tags: tagIds,
@@ -66,7 +66,7 @@ async function updateBookmarkController(req, res) {
       updatedBookmark,
     });
   } catch (error) {
-    console.error(error);
+    console.log("error" + error);
     const status = error.message === "Bookmark not found" ? 404 : 400;
     res.status(status).json({ error: error.message });
   }
@@ -75,7 +75,7 @@ async function updateBookmarkController(req, res) {
 async function deleteBookmarkController(req, res) {
   const { id } = req.params;
   try {
-    await findBookmarkOrThrow(id);
+    await findBookmarkOrThrow(id, req.user.id);
     await deleteBookmark(id);
     res.status(200).json({ message: "Bookmark deleted successfully" });
   } catch (error) {
@@ -87,10 +87,10 @@ async function deleteBookmarkController(req, res) {
 async function makeFavouriteBookMarkController(req, res) {
   const { id } = req.params;
   try {
-    await makeFavourite(id);
-    res.status(200).json({
-      message: "Toogled Favourites",
-    });
+    const bookmark = await findBookmarkOrThrow(id, req.user.id);
+    bookmark.isFavorite = !bookmark.isFavorite;
+    await bookmark.save();
+    res.status(200).json({ message: "Toggled Favorite" });
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

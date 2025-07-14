@@ -8,15 +8,16 @@ const {
   deleteNotesController,
   makeFavouriteNoteController,
   getAllTagsController,
+  getDashboardController,
 } = require("../controller/notes.controller");
-const { makeFavourite } = require("../services/notes.service");
-
-notesRouter.post("/notes", createNotesController);
-notesRouter.get("/notes", getAllNotesController);
-notesRouter.get("/notes/:id", getNotesByIdController);
-notesRouter.put("/notes/:id", updateNotesController);
-notesRouter.delete("/notes/:id", deleteNotesController);
-notesRouter.post("/notes/:id", makeFavouriteNoteController);
 notesRouter.get("/tags", getAllTagsController);
+notesRouter.get("/stats", getDashboardController);
+
+notesRouter.post("/", createNotesController);
+notesRouter.get("/", getAllNotesController);
+notesRouter.get("/:id", getNotesByIdController);
+notesRouter.put("/:id", updateNotesController);
+notesRouter.delete("/:id", deleteNotesController);
+notesRouter.post("/:id", makeFavouriteNoteController);
 
 module.exports = notesRouter;

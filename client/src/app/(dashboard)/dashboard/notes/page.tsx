@@ -46,15 +46,19 @@ export default function NotesPage(): JSX.Element {
   return (
     <main className="flex flex-col gap-6">
       <div className="flex justify-between items-center">
-        <HeroText content="Your Notes" />
+        <div className="hidden md:block">
+          <HeroText content="Your Notes" />
+        </div>
 
-        <Button
-          onClick={() => setModalOpen(true)}
-          variant="outline"
-          className="hidden md:block"
-        >
-          Create Note
-        </Button>
+        <div className="hidden md:block">
+          <Button
+            onClick={() => setModalOpen(true)}
+            variant="outline"
+            className="hidden md:block"
+          >
+            Create Note
+          </Button>
+        </div>
 
         <CreateNoteModal
           isOpen={isModalOpen}

@@ -1,4 +1,4 @@
-const { createTags } = require("../../common/services/tag.service");
+const { createTags } = require("../../common/services/common.services");
 const bookmarkModel = require("../models/bookmark.model");
 const puppeteer = require("puppeteer");
 
@@ -6,7 +6,6 @@ async function fetchTitleFromUrl(url) {
   let browser;
   try {
     console.log(`Fetching title from: ${url}`);
-
     browser = await puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -17,25 +16,19 @@ async function fetchTitleFromUrl(url) {
       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
     );
 
-    await page.goto(url, {
-      waitUntil: "networkidle2",
-      timeout: 15000,
-    });
-
+    await page.goto(url, { waitUntil: "networkidle2", timeout: 15000 });
     const title = await page.title();
     console.log(`Found title: ${title}`);
-
     return title || "Untitled";
   } catch (error) {
     console.error(`Error fetching title from ${url}:`, error.message);
     return "Untitled";
   } finally {
-    if (browser) {
-      await browser.close();
-    }
+    if (browser) await browser.close();
   }
 }
-async function createBookmark(url, title = "", tags = []) {
+
+async function createBookmark(userId, url, title = "", tags = []) {
   let tagIds = [];
 
   if (Array.isArray(tags) && tags.length > 0) {
@@ -51,6 +44,7 @@ async function createBookmark(url, title = "", tags = []) {
   }
 
   const bookmark = new bookmarkModel({
+    user: userId,
     url,
     title: title || (await fetchTitleFromUrl(url)),
     tags: tagIds,
@@ -60,21 +54,19 @@ async function createBookmark(url, title = "", tags = []) {
   return bookmark;
 }
 
-async function findBookmarkOrThrow(id) {
+async function findBookmarkOrThrow(id, userId) {
   const bookmark = await bookmarkModel
-    .findById(id)
+    .findOne({ _id: id, user: userId })
     .populate("tags", "_id name");
-  if (!bookmark) {
-    throw new Error("Bookmark not found");
-  }
+
+  if (!bookmark) throw new Error("Bookmark not found");
   return bookmark;
 }
 
-async function getAllBookmarks(query) {
+async function getAllBookmarks(query, userId) {
   const { q, tags } = query;
-  const filter = {};
+  const filter = { user: userId };
 
-  // title
   if (typeof q === "string" && q.trim()) {
     const keyword = q.trim();
     filter.$or = [
@@ -83,7 +75,6 @@ async function getAllBookmarks(query) {
     ];
   }
 
-  // tags
   if (typeof tags === "string" && tags.trim()) {
     const tagList = tags
       .split(",")
@@ -107,49 +98,44 @@ async function getAllBookmarks(query) {
   }
 }
 
-async function getBookmarkById(id) {
-  const bookmark = await bookmarkModel
-    .findById(id)
-    .populate("tags", "_id name");
+async function updateBookmark(id, userId, updateData) {
+  const bookmark = await bookmarkModel.findOneAndUpdate(
+    { _id: id, user: userId },
+    updateData,
+    { new: true, runValidators: true }
+  );
+
   if (!bookmark) {
     throw new Error("Bookmark not found");
   }
-  return {
-    test: "test",
-  };
+
+  return bookmark;
 }
 
-async function updateBookmark(id, updateData) {
-  const bookmark = await bookmarkModel.findByIdAndUpdate(id, updateData, {
-    new: true,
-    runValidators: true,
+async function deleteBookmark(id, userId) {
+  const bookmark = await bookmarkModel.findOneAndDelete({
+    _id: id,
+    user: userId,
   });
-
   if (!bookmark) {
     throw new Error("Bookmark not found");
   }
   return bookmark;
 }
 
-async function deleteBookmark(id) {
-  const bookmark = await bookmarkModel.findByIdAndDelete(id);
-  if (!bookmark) {
-    throw new Error("Bookmark not found");
-  }
-  return bookmark;
-}
-
-async function makeFavourite(id) {
-  const bookmark = await findBookmarkOrThrow(id);
+async function makeFavourite(id, userId) {
+  const bookmark = await findBookmarkOrThrow(id, userId);
   bookmark.isFavorite = !bookmark.isFavorite;
   await bookmark.save();
+  return bookmark;
 }
+
 module.exports = {
   createBookmark,
   getAllBookmarks,
-  getBookmarkById,
   updateBookmark,
   deleteBookmark,
   findBookmarkOrThrow,
   makeFavourite,
+  fetchTitleFromUrl,
 };

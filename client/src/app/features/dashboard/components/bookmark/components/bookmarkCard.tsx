@@ -97,7 +97,7 @@ export default function BookMarkCardList({
 
   return (
     <>
-      <div className="space-y-4 mt-6 px-2 sm:px-4 md:px-32">
+      <div className="space-y-4 mt-6 px-2 sm:px-4 md:px-32 mb-20">
         {bookMarks.map((bookMark) => {
           const uniqueId = `${bookMark._id}-${bookMark.createdAt}`;
           const formattedDate = format(
