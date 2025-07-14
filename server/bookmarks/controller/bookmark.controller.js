@@ -71,10 +71,23 @@ async function deleteBookmarkController(req, res) {
   }
 }
 
+async function makeFavouriteBookMarkController(req, res) {
+  const { id } = req.params;
+  try {
+    await makeFavourite(id);
+    res.status(200).json({
+      message: "Toogled Favourites",
+    });
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+}
+
 module.exports = {
   createBookmarkController,
   getAllBookmarksController,
   getBookmarkByIdController,
   updateBookmarkController,
   deleteBookmarkController,
+  makeFavouriteBookMarkController,
 };

@@ -98,6 +98,11 @@ async function deleteBookmark(id) {
   return bookmark;
 }
 
+async function makeFavourite(id) {
+  const bookmark = await findBookmarkOrThrow(id);
+  bookmark.isFavorite = !bookmark.isFavorite;
+  await bookmark.save();
+}
 module.exports = {
   createBookmark,
   getAllBookmarks,
