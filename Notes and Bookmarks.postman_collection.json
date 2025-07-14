@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "d9c3e972-956a-4904-985a-a0c6d54023d2",
+		"name": "Notes and Bookmarks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44889128",
+		"_collection_link": "https://galactic-capsule-8117862.postman.co/workspace/Dev%40it's-Workspace~71892ce6-d544-4e35-8bb1-b58aaf31bef8/collection/44889128-d9c3e972-956a-4904-985a-a0c6d54023d2?action=share&source=collection_link&creator=44889128"
+	},
+	"item": [
+		{
+			"name": "Notes",
+			"item": [
+				{
+					"name": "GET_ALL_NOTES",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE_NOTE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET_NOTES_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://:3005/api/notes/68739c9d953238745400b43d",
+							"protocol": "http",
+							"port": "3005",
+							"path": [
+								"api",
+								"notes",
+								"68739c9d953238745400b43d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_NOTE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_NOTE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_FAVOURITE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET_DASHBOARD_STATS",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Boookmarks",
+			"item": [
+				{
+					"name": "GET_ALL_BOOKMARKS",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE_BOOKMARK",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET_BOOKMARKS_BY_ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE_BOOK_MARK",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_BOOKMARK",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "ADD_FAVOURITE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "GET_ALL_TAGS",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
