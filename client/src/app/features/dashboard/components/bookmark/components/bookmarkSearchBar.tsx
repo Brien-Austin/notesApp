@@ -72,7 +72,7 @@ export default function BookmarkSearchBar({
         {allTags.length > 0 && (
           <button
             onClick={toggleShowTags}
-            className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white bg-sky-600 rounded-lg hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 ease-in-out"
+            className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200 ease-in-out"
           >
             <span>Filter by Tags</span>
             <svg

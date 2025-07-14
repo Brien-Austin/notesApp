@@ -109,18 +109,18 @@ export default function BookMarkCardList({
           return (
             <motion.div
               key={uniqueId}
-              className="relative cursor-pointer bg-gradient-to-br from-white to-gray-50 rounded shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-all duration-300 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between overflow-hidden group"
+              className="relative cursor-pointer bg-gradient-to-br from-white to-gray-50 rounded shadow-lg border-l-4 border-indigo-500 hover:shadow-xl transition-all duration-300 p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between overflow-hidden group"
               whileHover={{ scale: 1.01, y: -3 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded" />
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-200/20 to-indigo-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded" />
 
               <div className="relative z-10 flex-1 space-y-3 sm:space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <FileText className="h-5 w-5 text-blue-600" />
+                    <FileText className="h-5 w-5 text-indigo-600" />
                     <h2 className="text-base sm:text-lg font-bold text-gray-900 line-clamp-1 tracking-tight">
                       {bookMark.title}
                     </h2>
@@ -138,7 +138,7 @@ export default function BookMarkCardList({
                   href={bookMark.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 line-clamp-1 transition-colors duration-200"
+                  className="text-xs sm:text-sm text-indigo-600 hover:text-indigo-800 line-clamp-1 transition-colors duration-200"
                 >
                   {bookMark.url}
                 </a>
@@ -147,7 +147,7 @@ export default function BookMarkCardList({
                   {bookMark.tags.map((tag) => (
                     <span
                       key={tag._id}
-                      className="flex items-center space-x-1 bg-blue-500/10 text-blue-700 text-xs font-medium px-2 sm:px-3 py-0.5 sm:py-1 rounded-full hover:bg-blue-500/20 transition-colors duration-200"
+                      className="flex items-center space-x-1 bg-indigo-500/10 text-indigo-700 text-xs font-medium px-2 sm:px-3 py-0.5 sm:py-1 rounded-full hover:bg-indigo-500/20 transition-colors duration-200"
                     >
                       <Tag className="h-3 w-3 sm:h-4 sm:w-4" />
                       <span>{tag.name}</span>
@@ -182,7 +182,7 @@ export default function BookMarkCardList({
                 </button>
                 <button
                   onClick={() => handleCopy(bookMark.url, uniqueId)}
-                  className="flex items-center space-x-2 bg-blue-600 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                  className="flex items-center space-x-2 bg-indigo-600 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 sm:py-2 rounded-full hover:bg-indigo-700 transition-colors duration-200"
                 >
                   <Copy className="h-4 w-4" />
                   <span>{isCopied ? "Copied!" : "Copy Link"}</span>
@@ -227,7 +227,7 @@ export default function BookMarkCardList({
                   onClick={() => handleEdit(activeMenu)}
                   className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors duration-200 rounded-lg mx-1"
                 >
-                  <Edit className="h-4 w-4 text-blue-600" />
+                  <Edit className="h-4 w-4 text-indigo-600" />
                   <span>Edit Bookmark</span>
                 </button>
                 <button

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/app/features/common/components/button";
 import { X } from "lucide-react";
 import { useCreateNote, useNoteById, useUpdateNote } from "../hooks/useNotes";
+import toast from "react-hot-toast";
 
 interface NoteFormModalProps {
   noteId?: string;
@@ -45,9 +46,27 @@ const NoteFormModal: React.FC<NoteFormModalProps> = ({
     };
 
     if (mode === "create") {
-      createNote(payload, { onSuccess });
+      const loading = toast.loading("Making changes");
+
+      createNote(payload, {
+        onSuccess: () => {
+          toast.dismiss(loading);
+          toast.success("Saved changes");
+          onClose();
+        },
+      });
     } else if (mode === "edit" && noteId) {
-      updateNote({ id: noteId, ...payload }, { onSuccess });
+      const loading = toast.loading("Making changes");
+      updateNote(
+        { id: noteId, ...payload },
+        {
+          onSuccess: () => {
+            toast.dismiss(loading);
+            toast.success("Saved changes");
+            onClose();
+          },
+        }
+      );
     }
   };
 
@@ -70,13 +89,13 @@ const NoteFormModal: React.FC<NoteFormModalProps> = ({
           </button>
         </div>
         <input
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="Write your thoughts..."
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -85,7 +104,7 @@ const NoteFormModal: React.FC<NoteFormModalProps> = ({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2"
+              className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full flex items-center gap-2"
             >
               {tag}
               <button type="button" onClick={() => removeTag(tag)}>
@@ -95,7 +114,7 @@ const NoteFormModal: React.FC<NoteFormModalProps> = ({
           ))}
         </div>
         <input
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="Type and press Enter"
           value={tagInput}
           onChange={(e) => setTagInput(e.target.value)}

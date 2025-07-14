@@ -2,6 +2,7 @@ import { Button } from "@/app/features/common/components/button";
 import { X } from "lucide-react";
 import React, { useState } from "react";
 import { useCreateNote } from "../hooks/useNotes";
+import toast from "react-hot-toast";
 
 interface NoteFormProps {
   onClose: () => void;
@@ -34,7 +35,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    const loading = toast.loading("Saving notes..");
     createNote(
       {
         title,
@@ -43,6 +44,8 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
       },
       {
         onSuccess: () => {
+          toast.dismiss(loading);
+          toast.success("Saved Note");
           setTitle("");
           setContent("");
           setTags([]);
@@ -66,7 +69,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
         <input
           type="text"
           value={title}
-          className="border mt-1 border-sky-600 px-4 py-3 focus:outline-0 rounded-md"
+          className="border mt-1 border-indigo-600 px-4 py-3 focus:outline-0 rounded-md"
           onChange={(e) => setTitle(e.target.value)}
           required
           style={{ width: "100%" }}
@@ -77,7 +80,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
           Add your thoughts ✏️
         </label>
         <textarea
-          className="border mt-1 border-sky-600 px-4 py-3 focus:outline-0 rounded-md"
+          className="border mt-1 border-indigo-600 px-4 py-3 focus:outline-0 rounded-md"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           required
@@ -96,7 +99,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
               style={{
                 background: "#eee",
               }}
-              className="px-3 py-2  rounded-md  border border-sky-600 flex gap-3 items-center justify-between"
+              className="px-3 py-2  rounded-md  border border-indigo-600 flex gap-3 items-center justify-between"
             >
               <h1> {tag}</h1>
               <button
@@ -116,7 +119,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
           ))}
         </div>
         <input
-          className="border  border-sky-600 px-4 py-3 focus:outline-0 rounded-md placeholder:text-sm"
+          className="border  border-indigo-600 px-4 py-3 focus:outline-0 rounded-md placeholder:text-sm"
           type="text"
           value={tagInput}
           onChange={handleTagInput}

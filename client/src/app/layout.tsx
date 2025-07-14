@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { ReactQueryProvider } from "./providers/reactQuery";
+import { ToastProvider } from "./providers/toast";
 
 const satoshiFont = localFont({
   src: "/fonts/Satoshi-Variable.woff2",
@@ -20,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${satoshiFont.className} antialiased h-full`}>
+        <ToastProvider />
         <ReactQueryProvider> {children}</ReactQueryProvider>
       </body>
     </html>

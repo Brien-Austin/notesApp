@@ -74,13 +74,13 @@ const BookmarkFormModal: React.FC<BookmarkFormModalProps> = ({
           </button>
         </div>
         <input
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="https://example.com"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
@@ -89,7 +89,7 @@ const BookmarkFormModal: React.FC<BookmarkFormModalProps> = ({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full flex items-center gap-2"
+              className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full flex items-center gap-2"
             >
               {tag}
               <button type="button" onClick={() => removeTag(tag)}>
@@ -99,7 +99,7 @@ const BookmarkFormModal: React.FC<BookmarkFormModalProps> = ({
           ))}
         </div>
         <input
-          className="w-full border border-blue-500 rounded-md px-4 py-2 mb-4"
+          className="w-full border border-indigo-500 rounded-md px-4 py-2 mb-4"
           placeholder="Type and press Enter"
           value={tagInput}
           onChange={(e) => setTagInput(e.target.value)}

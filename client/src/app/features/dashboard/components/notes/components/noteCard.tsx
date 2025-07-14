@@ -83,18 +83,18 @@ export default function NoteCardList({ notes, onDelete }: NoteCardListProps) {
           return (
             <motion.div
               key={`${note._id}-${note.createdAt}-${note.tags}`}
-              className="relative cursor-pointer bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border-l-4 border-b-2 border-t-2 border-blue-500 border-r-2 hover:shadow-xl transition-all duration-300 p-4 sm:p-6 flex flex-col justify-between group"
+              className="relative cursor-pointer bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg border-l-4 border-b-2 border-t-2 border-indigo-500 border-r-2 hover:shadow-xl transition-all duration-300 p-4 sm:p-6 flex flex-col justify-between group"
               whileHover={{ scale: 1.02, y: -5 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-200/20 to-indigo-200/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
 
               <div className="space-y-3 relative z-10">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2 flex-1">
-                    <FileText className="h-5 w-5 text-blue-600" />
+                    <FileText className="h-5 w-5 text-indigo-600" />
                     <h2 className="text-base sm:text-lg font-bold text-gray-900 line-clamp-2 tracking-tight">
                       {note.title}
                     </h2>
@@ -140,7 +140,7 @@ export default function NoteCardList({ notes, onDelete }: NoteCardListProps) {
                 {note.tags.map((tag) => (
                   <span
                     key={tag._id}
-                    className="flex items-center space-x-1 bg-blue-500/10 text-blue-700 text-xs font-medium px-2 sm:px-3 py-0.5 sm:py-1 rounded-full hover:bg-blue-500/20 transition-colors duration-200"
+                    className="flex items-center space-x-1 bg-indigo-500/10 text-indigo-700 text-xs font-medium px-2 sm:px-3 py-0.5 sm:py-1 rounded-full hover:bg-indigo-500/20 transition-colors duration-200"
                   >
                     <Tag className="h-3 w-3 sm:h-4 sm:w-4" />
                     <span>#{tag.name}</span>
@@ -193,7 +193,7 @@ export default function NoteCardList({ notes, onDelete }: NoteCardListProps) {
                   onClick={() => handleEdit(activeMenu)}
                   className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center space-x-3 transition-colors duration-200 rounded-lg mx-1"
                 >
-                  <Edit className="h-4 w-4 text-blue-600" />
+                  <Edit className="h-4 w-4 text-indigo-600" />
                   <span>Edit Note</span>
                 </button>
                 <button

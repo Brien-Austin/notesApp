@@ -6,7 +6,7 @@ const tagVariants = cva(
     variants: {
       color: {
         gray: "bg-gray-200 text-gray-800",
-        blue: "bg-blue-200 text-blue-800",
+        indigo: "bg-indigo-200 text-indigo-800",
         green: "bg-green-200 text-green-800",
         red: "bg-red-200 text-red-800",
       },
@@ -25,7 +25,7 @@ const tagVariants = cva(
 
 type TagProps = {
   tag: string;
-  color?: "gray" | "blue" | "green" | "red";
+  color?: "gray" | "indigo" | "green" | "red";
   size?: "sm" | "md" | "lg";
 };
 

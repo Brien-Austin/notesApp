@@ -2,6 +2,7 @@ import { Button } from "@/app/features/common/components/button";
 import { X } from "lucide-react";
 import React, { useState } from "react";
 import { useCreateBookmark } from "../../notes/hooks/useBookMark";
+import toast from "react-hot-toast";
 
 interface BookMarkFormProps {
   onClose: () => void;
@@ -52,7 +53,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
     }
 
     setUrlError("");
-
+    const loading = toast.loading("Extracting title from URL");
     createBookMark(
       {
         url,
@@ -61,6 +62,8 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
       },
       {
         onSuccess: () => {
+          toast.dismiss(loading);
+          toast.success("Saved Bookmark");
           setTitle("");
           setUrl("");
           setTags([]);
@@ -84,7 +87,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
           type="text"
           value={url}
           className={`border mt-1 px-4 py-3 focus:outline-0 rounded-md w-full ${
-            urlError ? "border-red-500" : "border-sky-600"
+            urlError ? "border-red-500" : "border-indigo-600"
           }`}
           onChange={(e) => setUrl(e.target.value)}
           required
@@ -96,7 +99,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
           Give a name to remember this Bookmark✏️
         </label>
         <textarea
-          className="border mt-1 border-sky-600 px-4 py-3 focus:outline-0 rounded-md"
+          className="border mt-1 border-indigo-600 px-4 py-3 focus:outline-0 rounded-md"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
@@ -115,7 +118,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
               style={{
                 background: "#eee",
               }}
-              className="px-3 py-2 rounded-md border border-sky-600 flex gap-3 items-center justify-between"
+              className="px-3 py-2 rounded-md border border-indigo-600 flex gap-3 items-center justify-between"
             >
               <h1>{tag}</h1>
               <button
@@ -135,7 +138,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
           ))}
         </div>
         <input
-          className="border border-sky-600 px-4 py-3 focus:outline-0 rounded-md placeholder:text-sm"
+          className="border border-indigo-600 px-4 py-3 focus:outline-0 rounded-md placeholder:text-sm"
           type="text"
           value={tagInput}
           onChange={handleTagInput}
@@ -144,7 +147,11 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
         />
       </div>
       <div className="flex mt-5 justify-between items-center">
-        <Button onClick={handleSubmit} variant="outline">
+        <Button
+          loadingText="extracting title"
+          onClick={handleSubmit}
+          variant="outline"
+        >
           Add this Bookmark
         </Button>
         <Button onClick={() => onClose()} variant="outline">

@@ -62,21 +62,21 @@ const Sidebar = () => {
                   key={route.route}
                   className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 min-w-0 flex-1 ${
                     isActive
-                      ? "bg-sky-50 text-sky-600"
-                      : "text-gray-600 hover:text-sky-600 hover:bg-gray-50"
+                      ? "bg-indigo-50 text-indigo-600"
+                      : "text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
                   }`}
                   onClick={() => handleRouteClick(route.route)}
                 >
                   <route.icon
                     className={`w-5 h-5 mb-1 ${
-                      isActive ? "text-sky-600" : "text-gray-600"
+                      isActive ? "text-indigo-600" : "text-gray-600"
                     }`}
                   />
 
                   {isActive && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-sky-600 rounded-full"
+                      className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-indigo-600 rounded-full"
                       initial={false}
                       transition={{
                         type: "spring",
@@ -92,7 +92,7 @@ const Sidebar = () => {
             {showCenterButton && (
               <div className="absolute left-1/2 transform -translate-x-1/2 -top-6">
                 <button
-                  className="w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 bg-sky-600 text-white hover:bg-sky-700 border-4 border-white"
+                  className="w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-200 bg-indigo-600 text-white hover:bg-indigo-700 border-4 border-white"
                   onClick={() => {
                     if (currentRoute?.route.includes("notes")) {
                       setActiveModalType("note");
@@ -138,7 +138,7 @@ const Sidebar = () => {
             key={route.route}
             className={`flex items-center cursor-pointer p-3 transition-colors duration-150 ${
               isActive
-                ? "bg-sky-600 text-white"
+                ? "bg-indigo-600 text-white"
                 : "hover:bg-gray-100 text-gray-700"
             }`}
             onClick={() => handleRouteClick(route.route)}
