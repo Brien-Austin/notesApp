@@ -36,7 +36,7 @@ async function loginController(req, res) {
     const { user, accessToken, refreshToken } = await login({
       email,
       password,
-    }); // 🛠️ FIXED
+    });
 
     res.status(200).json({
       message: "Login successful",
@@ -45,7 +45,17 @@ async function loginController(req, res) {
       refreshToken,
     });
   } catch (error) {
-    res.status(401).json({ error: error.message || "Login failed" });
+    if (error.message === "User not found") {
+      return res.status(404).json({ error: "No account with that email." });
+    }
+
+    if (error.message === "Incorrect password") {
+      return res
+        .status(401)
+        .json({ error: "Incorrect password. Please try again." });
+    }
+
+    res.status(500).json({ error: "Login failed. Please try again later." });
   }
 }
 

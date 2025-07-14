@@ -41,10 +41,6 @@ const NoteFormModal: React.FC<NoteFormModalProps> = ({
       tags,
     };
 
-    const onSuccess = () => {
-      onClose();
-    };
-
     if (mode === "create") {
       const loading = toast.loading("Making changes");
 

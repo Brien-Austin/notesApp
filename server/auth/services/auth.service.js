@@ -1,7 +1,10 @@
 const bcrypt = require("bcryptjs");
 
 const userModel = require("../models/user.model");
-const { generateAccessToken, generateRefreshToken } = require("../../utils/jwt");
+const {
+  generateAccessToken,
+  generateRefreshToken,
+} = require("../../utils/jwt");
 
 const register = async ({ email, password, name }) => {
   const existinguserModel = await userModel.findOne({ email });
@@ -25,10 +28,10 @@ const register = async ({ email, password, name }) => {
 
 const login = async ({ email, password }) => {
   const user = await userModel.findOne({ email }).select("+password");
-  if (!user) throw new Error("Invalid credentials");
+  if (!user) throw new Error("User not found");
 
   const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) throw new Error("Invalid credentials");
+  if (!isMatch) throw new Error("Incorrect password");
 
   const payload = { id: user._id, email: user.email };
   return {
