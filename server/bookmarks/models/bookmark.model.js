@@ -10,9 +10,10 @@ const bookmarkSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
-    tags: {
-      type: [String],
-      default: [],
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
+    isFavorite: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

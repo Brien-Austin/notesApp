@@ -11,11 +11,9 @@ const noteSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    tags: {
-      type: [String],
-      default: [],
-    },
-    favorite: {
+    tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
+
+    isFavorite: {
       type: Boolean,
       default: false,
     },
