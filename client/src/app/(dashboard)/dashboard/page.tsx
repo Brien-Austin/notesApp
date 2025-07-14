@@ -1,6 +1,5 @@
 "use client";
 import { useProfile } from "@/app/features/auth/hooks/useProfile";
-import HeroText from "@/app/features/common/components/heroText";
 import RecentActivity from "@/app/features/dashboard/components/dashboard/components/dashboardActivity";
 import { extractNameFromEmail } from "@/app/utils/name";
 

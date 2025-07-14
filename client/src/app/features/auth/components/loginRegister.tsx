@@ -18,29 +18,25 @@ export default function LoginRegister() {
     e.preventDefault();
     const endpoint = activeTab === "login" ? LOGIN_USER : REGISTER_USER;
 
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+    const res = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Something went wrong");
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Something went wrong");
 
-      setAccessToken(data.accessToken);
-      setRefreshToken(data.refreshToken);
+    setAccessToken(data.accessToken);
+    setRefreshToken(data.refreshToken);
 
-      if (activeTab === "login") {
-        alert("Logged in successfully");
-        router.push("/dashboard");
-      } else {
-        alert("Registered successfully");
-        setActiveTab("login");
-        setForm({ email: "", password: "" });
-      }
-    } catch (err: any) {
-      alert(err.message);
+    if (activeTab === "login") {
+      alert("Logged in successfully");
+      router.push("/dashboard");
+    } else {
+      alert("Registered successfully");
+      setActiveTab("login");
+      setForm({ email: "", password: "" });
     }
   };
 
