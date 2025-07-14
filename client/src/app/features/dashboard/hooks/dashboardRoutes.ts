@@ -1,19 +1,4 @@
-import {
-  LucideIcon,
-  Home,
-  User,
-  Settings,
-  Tag,
-  Globe,
-  Sparkles,
-  BadgeCheck,
-  Blocks,
-  BarChart2,
-  FileText,
-  Bookmark,
-  Star,
-  Tags,
-} from "lucide-react";
+import { LucideIcon, Home, FileText, Bookmark, Star } from "lucide-react";
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 interface DashboardRoute {

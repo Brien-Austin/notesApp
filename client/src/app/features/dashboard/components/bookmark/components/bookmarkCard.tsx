@@ -17,7 +17,6 @@ import {
   useDeleteBookmark,
 } from "../../notes/hooks/useBookMark";
 import { useState, useEffect } from "react";
-import NoteFormModal from "../../notes/components/noteFormModal";
 import BookmarkFormModal from "./bookFormModal";
 
 interface BookMarkCardListProps {

@@ -1,10 +1,7 @@
 "use client";
-
 import { JSX, useState } from "react";
-import HeroText from "@/app/features/common/components/heroText";
 import { Button } from "@/app/features/common/components/button";
 import NoteCardList from "@/app/features/dashboard/components/notes/components/noteCard";
-import NoteSearchBar from "@/app/features/dashboard/components/notes/components/noteSearchBar";
 import CreateNoteModal from "@/app/features/dashboard/components/notes/components/createNodeModal";
 import {
   Tag,
@@ -15,8 +12,8 @@ import { useBookmarks } from "@/app/features/dashboard/components/notes/hooks/us
 
 export default function NotesPage(): JSX.Element {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [searchQuery] = useState<string>("");
+  const [selectedTags] = useState<Tag[]>([]);
   const [viewMode, setViewMode] = useState<"notes" | "bookmarks">("notes");
 
   const tagIds = selectedTags.map((tag) => tag._id);

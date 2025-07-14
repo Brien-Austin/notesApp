@@ -20,11 +20,7 @@ interface NoteCardListProps {
   onDelete?: (noteId: string) => void;
 }
 
-export default function NoteCardList({
-  notes,
-  onEdit,
-  onDelete,
-}: NoteCardListProps) {
+export default function NoteCardList({ notes, onDelete }: NoteCardListProps) {
   const { mutate: favoriteNote } = useFavoriteNote();
   const { mutate: deleteNote } = useDeleteNote();
 

@@ -1,5 +1,3 @@
-import { apiRequest } from "@/app/api/api";
-import { POST_NOTE } from "@/app/api/api_constants";
 import { Button } from "@/app/features/common/components/button";
 import { X } from "lucide-react";
 import React, { useState } from "react";
@@ -15,7 +13,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
 
-  const { mutate: createNote, isPending } = useCreateNote();
+  const { mutate: createNote } = useCreateNote();
   const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
   };
@@ -26,13 +24,6 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
       if (!tags.includes(tagInput.trim())) {
         setTags([...tags, tagInput.trim()]);
       }
-      setTagInput("");
-    }
-  };
-
-  const handleTagClick = () => {
-    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-      setTags([...tags, tagInput.trim()]);
       setTagInput("");
     }
   };
@@ -58,9 +49,6 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
           setTagInput("");
           onClose();
         },
-        onError: (err: any) => {
-          console.error("Create Note Error:", err.message);
-        },
       }
     );
   };
@@ -73,7 +61,7 @@ const CreateNotes: React.FC<NoteFormProps> = ({ onClose }) => {
     >
       <div>
         <label className="text-[#4f4f4f] font-semibold">
-          What's this about 🤔 ?
+          What`&apos;`s this about 🤔 ?
         </label>
         <input
           type="text"

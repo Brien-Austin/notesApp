@@ -2,11 +2,8 @@
 
 import { JSX, useState } from "react";
 import HeroText from "@/app/features/common/components/heroText";
-import DashboardLayout from "../layout";
-import Modal from "../modal";
 import { Button } from "@/app/features/common/components/button";
 import NoteCardList from "@/app/features/dashboard/components/notes/components/noteCard";
-import CreateNotes from "@/app/features/dashboard/components/notes/components/createNotes";
 import NoteSearchBar from "@/app/features/dashboard/components/notes/components/noteSearchBar";
 import {
   Tag,

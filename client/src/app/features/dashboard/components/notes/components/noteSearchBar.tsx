@@ -26,11 +26,7 @@ export default function NoteSearchBar({
     return () => clearTimeout(timeout);
   }, [inputValue, onQueryChange]);
 
-  const {
-    data: allTags = [],
-    isLoading: tagsLoading,
-    isError: tagsError,
-  } = useTags();
+  const { data: allTags = [] } = useTags();
 
   const toggleTag = (tag: Tag) => {
     const isSelected = selectedTags.some((t) => t._id === tag._id);

@@ -3,8 +3,6 @@
 import HeroText from "@/app/features/common/components/heroText";
 import { Button } from "@/app/features/common/components/button";
 import { useState } from "react";
-import Modal from "../modal";
-import CreateBookMark from "@/app/features/dashboard/components/bookmark/components/createBookMark";
 import BookMarkCardList from "@/app/features/dashboard/components/bookmark/components/bookmarkCard";
 import { useBookmarks } from "@/app/features/dashboard/components/notes/hooks/useBookMark";
 import BookmarkSearchBar from "@/app/features/dashboard/components/bookmark/components/bookmarkSearchBar";

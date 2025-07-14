@@ -1,5 +1,3 @@
-import { apiRequest } from "@/app/api/api";
-import { POST_NOTE } from "@/app/api/api_constants";
 import { Button } from "@/app/features/common/components/button";
 import { X } from "lucide-react";
 import React, { useState } from "react";
@@ -16,7 +14,7 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
   const [tags, setTags] = useState<string[]>([]);
   const [urlError, setUrlError] = useState("");
 
-  const { mutate: createBookMark, isPending } = useCreateBookmark();
+  const { mutate: createBookMark } = useCreateBookmark();
 
   const handleTagInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTagInput(e.target.value);
@@ -28,13 +26,6 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
       if (!tags.includes(tagInput.trim())) {
         setTags([...tags, tagInput.trim()]);
       }
-      setTagInput("");
-    }
-  };
-
-  const handleTagClick = () => {
-    if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-      setTags([...tags, tagInput.trim()]);
       setTagInput("");
     }
   };
@@ -76,9 +67,6 @@ const CreateBookMark: React.FC<BookMarkFormProps> = ({ onClose }) => {
           setTagInput("");
           setUrlError("");
           onClose();
-        },
-        onError: (err: any) => {
-          console.error("Create Note Error:", err.message);
         },
       }
     );

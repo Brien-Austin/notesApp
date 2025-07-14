@@ -2,7 +2,8 @@ export const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 type RequestOptions = {
   method?: "GET" | "POST" | "PUT" | "DELETE";
   headers?: HeadersInit;
-  body?: any;
+  body?: BodyInit | object;
+
   token?: string;
 };
 
